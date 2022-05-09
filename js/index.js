@@ -408,42 +408,47 @@ function resetKeyboard() {
   if (codeSet.ControlLeft && codeSet.AltLeft) {
     document.querySelector('.ControlLeft').classList.add('press')
     document.querySelector('.AltLeft').classList.add('press')
-  }
-  else if (codeSet.ControlRight && codeSet.AltRight) {
+  } else if (codeSet.ControlRight && codeSet.AltRight) {
     document.querySelector('.ControlRight').classList.add('press')
     document.querySelector('.AltRight').classList.add('press')
-  }
-  else if (codeSet.ControlRight && codeSet.AltLeft) {
+  } else if (codeSet.ControlRight && codeSet.AltLeft) {
     document.querySelector('.ControlRight').classList.add('press')
     document.querySelector('.AltLeft').classList.add('press')
-  }
-  else {
+  } else {
     document.querySelector('.ControlLeft').classList.add('press')
     document.querySelector('.AltRight').classList.add('press')
   }
 }
 
-function switchLang() {
-  if (
-    (codeSet.ControlLeft && codeSet.AltLeft) ||
-    (codeSet.ControlRight && codeSet.AltRight) ||
-    (codeSet.ControlRight && codeSet.AltLeft) ||
-    (codeSet.ControlLeft && codeSet.AltRight)
-  ) {
-    if (!switchedLanguage) {
-      switchedLanguage = true
-      clearInterval(intervalSwitchLang)
-      if (lang === 'eng') {
-        lang = 'rus'
-        language = ruKbd
-      } else {
-        lang = 'eng'
-        language = enKbd
+class SwitchLang {
+  constructor(name) {
+    this.name = name
+  }
+
+  swLn() {
+    if (
+      (codeSet.ControlLeft && codeSet.AltLeft) ||
+      (codeSet.ControlRight && codeSet.AltRight) ||
+      (codeSet.ControlRight && codeSet.AltLeft) ||
+      (codeSet.ControlLeft && codeSet.AltRight)
+    ) {
+      if (!this.name) {
+        this.name = true
+        clearInterval(intervalSwitchLang)
+        if (lang === 'eng') {
+          lang = 'rus'
+          language = ruKbd
+        } else {
+          lang = 'eng'
+          language = enKbd
+        }
+        resetKeyboard()
       }
-      resetKeyboard()
     }
   }
 }
+
+new SwitchLang(switchedLanguage).swLn()
 
 window.addEventListener('load', () => {
   setStartContainer2()
@@ -533,7 +538,10 @@ window.addEventListener('keydown', (e) => {
   }
   if (e.code in codeSet) {
     codeSet[e.code] = true
-    intervalSwitchLang = setInterval(switchLang, 10)
+    intervalSwitchLang = setInterval(
+      new SwitchLang(switchedLanguage).swLn(),
+      10
+    )
   }
 })
 
