@@ -1,0 +1,29 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretty": "prettier --check",
+    "lint": "npm run pretty && eslint --max-warnings 0 --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazancity/virtual-keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kazancity/virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/kazancity/virtual-keyboard#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
+  }
+}
