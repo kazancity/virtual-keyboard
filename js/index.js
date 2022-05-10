@@ -2,8 +2,8 @@ import enKbd from './en.js'
 import ruKbd from './ru.js'
 
 const codeSet = {
-  AltLeft: false,
-  AltRight: false,
+  ShiftLeft: false,
+  ShiftRight: false,
   ControlLeft: false,
   ControlRight: false,
 }
@@ -395,7 +395,7 @@ function setStartContainer2() {
   const headerRight = document.createElement('div')
   footer.append(headerRight)
   const subTitle = document.createElement('h3')
-  subTitle.textContent = 'Переключение языка ввода: Ctrl + Alt'
+  subTitle.textContent = 'Переключение языка ввода: Ctrl + Shift'
   headerRight.append(subTitle)
   const textInfo = document.createElement('h3')
   textInfo.textContent = 'Клавиатура создана в операционной системе Windows'
@@ -405,18 +405,18 @@ function setStartContainer2() {
 function resetKeyboard() {
   document.querySelector('.keyboard-wrapper').remove()
   setKeyboardOnLoad()
-  if (codeSet.ControlLeft && codeSet.AltLeft) {
+  if (codeSet.ControlLeft && codeSet.ShiftLeft) {
     document.querySelector('.ControlLeft').classList.add('press')
-    document.querySelector('.AltLeft').classList.add('press')
-  } else if (codeSet.ControlRight && codeSet.AltRight) {
+    document.querySelector('.ShiftLeft').classList.add('press')
+  } else if (codeSet.ControlRight && codeSet.ShiftRight) {
     document.querySelector('.ControlRight').classList.add('press')
-    document.querySelector('.AltRight').classList.add('press')
-  } else if (codeSet.ControlRight && codeSet.AltLeft) {
+    document.querySelector('.ShiftRight').classList.add('press')
+  } else if (codeSet.ControlRight && codeSet.ShiftLeft) {
     document.querySelector('.ControlRight').classList.add('press')
-    document.querySelector('.AltLeft').classList.add('press')
+    document.querySelector('.ShiftLeft').classList.add('press')
   } else {
     document.querySelector('.ControlLeft').classList.add('press')
-    document.querySelector('.AltRight').classList.add('press')
+    document.querySelector('.ShiftRight').classList.add('press')
   }
 }
 
@@ -427,10 +427,10 @@ class SwitchLang {
 
   swLn() {
     if (
-      (codeSet.ControlLeft && codeSet.AltLeft) ||
-      (codeSet.ControlRight && codeSet.AltRight) ||
-      (codeSet.ControlRight && codeSet.AltLeft) ||
-      (codeSet.ControlLeft && codeSet.AltRight)
+      (codeSet.ControlLeft && codeSet.ShiftLeft) ||
+      (codeSet.ControlRight && codeSet.ShiftRight) ||
+      (codeSet.ControlRight && codeSet.ShiftLeft) ||
+      (codeSet.ControlLeft && codeSet.ShiftRight)
     ) {
       if (!this.name) {
         this.name = true
